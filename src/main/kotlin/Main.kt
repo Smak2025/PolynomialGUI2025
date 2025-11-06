@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
@@ -37,11 +39,12 @@ fun App() {
 
 @Composable
 fun Content(viewModel: MainViewModel, modifier: Modifier = Modifier) {
+    val measurer = rememberTextMeasurer()
     Column(modifier = modifier) {
         Canvas(
             modifier = Modifier.fillMaxWidth().weight(1f).padding(10.dp)
         ){
-            viewModel.draw(this)
+            viewModel.draw(this, measurer)
         }
         Box(modifier = Modifier.fillMaxWidth().padding(10.dp).border(width = 1.dp, color = Color.Black)
             ) {

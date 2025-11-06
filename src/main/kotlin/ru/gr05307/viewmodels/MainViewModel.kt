@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.text.TextMeasurer
 import ru.gr05307.painting.CartesianPainter
 import ru.gr05307.ui.convertation.Plain
 
@@ -18,9 +19,10 @@ class MainViewModel {
 
     private val cartesianPainter = CartesianPainter(plain)
 
-    fun draw(scope: DrawScope){
+    fun draw(scope: DrawScope, measurer: TextMeasurer){
         plain.width = scope.size.width
         plain.height = scope.size.height
+        cartesianPainter.measurer = measurer
         cartesianPainter.draw(scope)
     }
 }
